@@ -1,8 +1,9 @@
 class Usuario {
-  constructor(nombre, apellido, mascotas) {
+  constructor(nombre, apellido, mascotas, libros) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.mascotas = mascotas;
+    this.libros = libros;
   }
   saludar() {
     return `Hola, mi nombre es: ${this.nombre + this.apellido}`;
@@ -10,51 +11,45 @@ class Usuario {
   getFullName() {
     return this.nombre + this.apellido;
   }
-}
-const user1 = new Usuario("Kevin ", "Elgueta", "Perro");
-
-console.log(user1.saludar());
-
-// *********************************************
-
-class Libro extends Usuario {
-  constructor(nombre, apellido, mascotas, libro, autor) {
-    super(nombre, apellido, mascotas);
-    this.libro = libro;
-    this.autor = autor;
-  }
   getBookNames() {
-    return `Los libros son : ${this.libro} de ${this.autor}`;
+    return this.libros;
   }
 }
 
-user2 = new Libro("Jessica ", "Alba", "Gato", "Guerra y paz", "Leon Tolstoi");
+// *********************************************
+
+const user1 = new Usuario(
+  "Kevin ",
+  "Elgueta",
+  ["Perro", "Conejo"],
+  [{ titulo: "Harry Poter", autor: "J.K.Rowling" }]
+);
+
+const user2 = new Usuario(
+  "Brandon ",
+  "Moreno",
+  ["Oso", "Tigre"],
+  [{ titulo: "Amnesia", autor: "Jose Jose" }]
+);
 
 // *********************************************
+
+// *********************************************
+
 let mascotas = [];
 
-const addMascota = (mascota) => mascotas.push(mascota);
+const addPet = (mascota) => mascotas.push(mascota);
 
-addMascota("gato");
-addMascota("conejo");
-addMascota("pez");
+addPet("gato");
+addPet("pez");
+addPet("hamster");
 
-const countMascotas = () => {
+const countPets = () => {
   return `Tienes ${mascotas.length} mascotas ingresadas.`;
 };
 
 // *********************************************
 
-let libros = [];
-
-const addLibro = (libro, autor) => libros.push(libro, autor);
-
-addLibro("Lord of the rings", "Jacob G.");
-
-const countBooks = () => {
-  return `Tienes ${libros.length} libros ingresados.`;
-};
-
-console.log(countMascotas());
-console.log(countBooks());
+console.log(user1.saludar());
+console.log(countPets());
 console.log(user2.getBookNames());
